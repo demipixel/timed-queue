@@ -236,8 +236,9 @@ class Queue extends EventEmitter {
           if (!job.retryCount) scores.push((job.timing - job.active) / res.retry)
           process.nextTick(() => this.emit('job', job))
         })
-        if (!res.hasMore) return scores
-        res = yield this.getjobs(false)
+        return scores
+        //if (!res.hasMore) return scores
+        //res = yield this.getjobs(false)
       }
     })
   }
